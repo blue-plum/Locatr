@@ -1,0 +1,22 @@
+[Unit]
+Description=Household Storage Tracker
+After=network.target
+
+[Service]
+Type=simple
+User=storage-tracker
+Group=storage-tracker
+WorkingDirectory=/opt/storage-tracker
+ExecStart=/usr/bin/node /opt/storage-tracker/server.js
+Environment=PORT=8080
+Environment=DATA_DIR=/var/lib/storage-tracker
+StateDirectory=storage-tracker
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

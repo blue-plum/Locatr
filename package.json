@@ -1,0 +1,1 @@
+{"name":"home-storage-tracker","version":"1.0.0","private":true,"type":"module","scripts":{"start":"node server.js","test":"node --test"},"engines":{"node":">=22.13"},"dependencies":{"express":"^5.1.0","multer":"^2.0.2","qrcode":"^1.5.4","sharp":"^0.35.5"}}
