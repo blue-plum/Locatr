@@ -2,6 +2,32 @@
 
 **A place for everything.**
 
+Current version: **1.0.1**. See [CHANGELOG.md](CHANGELOG.md) for release history.
+
+## Project layout and version control
+
+- `public/` — browser app, styling and logo.
+- `server.js`, `package.json`, `package-lock.json` — server and locked dependencies.
+- `deploy/` — Linux systemd service configuration.
+- `test/` — automated integration checks using temporary data.
+- `scripts/` — release packaging command.
+- `docs/previews/` — reference screenshots (historical, not live app state).
+- `releases/` — generated versioned ZIP files; the previous unversioned ZIP is preserved in `releases/archive/`.
+- `data/` — private local database and photos; excluded from Git and release packages.
+- `node_modules/`, `.npm-cache/` — local dependencies and cache; excluded from Git.
+
+Git tags identify release snapshots: `v1.0.0` is the original working baseline; `v1.0.1` contains the folder and release workflow cleanup. Commits use the local automation identity `Codex <codex@localhost>`; no personal Git identity was configured. This repository is local; no remote hosting or publishing has been set up. Git history does not back up your inventory data.
+
+Inspect changes with `git status`, `git diff` and `git log --oneline --decorate`. For future changes, create a branch such as `git switch -c codex/my-change`, run the checks, then commit the source changes.
+
+To build a release on Windows with PowerShell:
+
+```sh
+npm run build:release
+```
+
+This runs the tests and creates `releases/StoTrak-1.0.1.zip` using the version in `package.json`. Rebuilding that version replaces its generated ZIP. Data, installed dependencies and caches are never included. For the next release, update the changelog, run `npm version patch --no-git-tag-version`, build, commit and tag the matching version.
+
 A responsive household inventory for a headless Raspberry Pi or Linux server. Browse at `http://PI-IP:8080` from phones, tablets and computers on your home network.
 
 ## Included
@@ -35,7 +61,7 @@ Install the source under `/opt/storage-tracker` and dependencies with `npm ci --
 
 ```sh
 sudo useradd --system --home /var/lib/storage-tracker --shell /usr/sbin/nologin storage-tracker
-sudo cp storage-tracker.service /etc/systemd/system/
+sudo cp deploy/storage-tracker.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable --now storage-tracker
 sudo systemctl status storage-tracker

@@ -2,3 +2,7 @@ node_modules/
 .npm-cache/
 data/
 *.log
+releases/
+.env
+.env.*
+!.env.example
