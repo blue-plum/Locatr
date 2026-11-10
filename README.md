@@ -18,7 +18,7 @@ The app was previously called StoTrak. The GitHub repository, Compose service, i
 - `data/` — private local database and photos; excluded from Git and release packages.
 - `node_modules/`, `.npm-cache/` — local dependencies and cache; excluded from Git.
 
-Git tags identify release snapshots: `v1.0.0` is the original working baseline; `v1.0.1` contains the folder and release workflow cleanup. Commits use the local automation identity `Codex <codex@localhost>`; no personal Git identity was configured. The private GitHub repository is [blue-plum/StoTrak](https://github.com/blue-plum/StoTrak), configured locally as `origin`. Push committed changes with `git push` and new release tags with `git push origin --tags`. Git history does not back up your inventory data.
+Git tags identify release snapshots: `v1.0.0` is the original working baseline; `v1.0.1` contains the folder and release workflow cleanup. Commits use the local automation identity `Codex <codex@localhost>`; no personal Git identity was configured. The private GitHub repository is [blue-plum/Locatr](https://github.com/blue-plum/Locatr), configured locally as `origin`. Push committed changes with `git push` and new release tags with `git push origin --tags`. Git history does not back up your inventory data.
 
 Inspect changes with `git status`, `git diff` and `git log --oneline --decorate`. For future changes, create a branch such as `git switch -c codex/my-change`, run the checks, then commit the source changes.
 

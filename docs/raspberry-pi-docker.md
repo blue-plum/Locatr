@@ -16,8 +16,8 @@ git --version
 The GitHub repository is private. Authenticate Git on the Pi using your existing GitHub SSH setup (or clone with GitHub CLI after `gh auth login`). GitHub credentials stay on the host, outside the app image and Compose file.
 
 ```sh
-git clone git@github.com:blue-plum/StoTrak.git
-cd StoTrak
+git clone git@github.com:blue-plum/Locatr.git
+cd Locatr
 cp .env.example .env
 nano .env
 ```
@@ -36,6 +36,8 @@ Open `http://PI-IP:8080` on a phone or desktop on the same network. The containe
 The initial build downloads dependencies and can take several minutes on a Pi. The health check reports readiness; it does not automatically restart an unhealthy but still running process. Unexpected process exits are restarted by Compose's restart policy.
 
 ## Update from GitHub
+
+The GitHub repository was renamed from `StoTrak` to `Locatr`. For an existing clone, keep the same directory and data volume and update its remote with `git remote set-url origin git@github.com:blue-plum/Locatr.git`. In Arcane, update the repository URL to `https://github.com/blue-plum/Locatr` while retaining the existing project and volume.
 
 From the same clone directory:
 
