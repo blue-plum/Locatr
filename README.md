@@ -1,8 +1,10 @@
-# StoTrak
+# Locatr
 
-**A place for everything.**
+**Where everything belongs.**
 
-Current version: **1.0.2**. See [CHANGELOG.md](CHANGELOG.md) for release history.
+Current version: **1.1.0**. See [CHANGELOG.md](CHANGELOG.md) for release history.
+
+The app was previously called StoTrak. The GitHub repository, Compose service, image name, `STOTRAK_PORT` setting and data volume retain their existing names so Arcane can redeploy in place. Keep the same Arcane project and volume. Existing QR links and data formats are unchanged.
 
 ## Project layout and version control
 

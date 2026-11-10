@@ -7,7 +7,7 @@ try {
     $packageInfo = Get-Content -LiteralPath 'package.json' -Raw | ConvertFrom-Json
     $releaseDirectory = Join-Path $projectRoot 'releases'
     New-Item -ItemType Directory -Force -Path $releaseDirectory | Out-Null
-    $archivePath = Join-Path $releaseDirectory ('StoTrak-' + $packageInfo.version + '.zip')
+    $archivePath = Join-Path $releaseDirectory ('Locatr-' + $packageInfo.version + '.zip')
     $sourcePaths = @('package.json', 'package-lock.json', 'server.js', 'public', 'README.md', 'CHANGELOG.md', 'Dockerfile', 'compose.yaml', '.env.example', 'docs', 'deploy', 'scripts', 'test', '.dockerignore', '.gitignore', '.gitattributes')
     Compress-Archive -LiteralPath $sourcePaths -DestinationPath $archivePath -Force
     Write-Output "Built $archivePath"

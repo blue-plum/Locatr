@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0
+
+- Rebrand the app as Locatr, with the supplied logo and "Where everything belongs" tagline.
+- Update the interface to a blue colour scheme and label download names to Locatr.
+- Preserve existing storage IDs, QR URLs, database format and Compose service/volume settings for Arcane redeployment.
+
 ## 1.0.2
 
 - Add Raspberry Pi Docker Compose deployment instructions for the private GitHub repository.

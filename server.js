@@ -60,7 +60,7 @@ app.get('/api/label/:id',async(req,res)=>{
  let modules='';for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(qr.modules.get(y,x))modules+=`<rect x="${4+(x+4)*unit}" y="${4+(y+4)*unit}" width="${unit}" height="${unit}"/>`;
  const lettering=lines.map((line,i)=>`<text x="40" y="${15+i*7}" font-family="DejaVu Sans,Arial,sans-serif" font-size="${Math.min(i===0?4.5:3.5,88/Math.max(1,line.length))}" ${i===0?'font-weight="bold"':''}>${xml(line)}</text>`).join('');
  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="100mm" height="40mm" viewBox="0 0 100 40"><rect width="100" height="40" fill="white"/><g fill="black">${modules}${lettering}</g></svg>`;
- const png=req.query.format==='png';if(req.query.download==='1')res.attachment(`StoTrak-${storage.id.slice(0,8)}.${png?'png':'svg'}`);
+ const png=req.query.format==='png';if(req.query.download==='1')res.attachment(`Locatr-${storage.id.slice(0,8)}.${png?'png':'svg'}`);
  res.type(png?'png':'svg').send(png?await sharp(Buffer.from(svg),{density:300}).png().toBuffer():svg);
 });
 app.get('/api/export',(req,res)=>{res.attachment('storage-tracker.json').json({exported:new Date().toISOString(),locations:db.prepare('SELECT * FROM locations').all(),types:db.prepare('SELECT * FROM types').all(),storage:db.prepare('SELECT * FROM storage').all(),items:db.prepare('SELECT * FROM items').all()});});
