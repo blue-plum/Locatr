@@ -36,6 +36,13 @@ test('storage, photos, QR codes, moves, validation and persistence',async()=>{
  assert.equal(state.locations.length,initial.locations.length-1);assert.equal(state.types.length,initial.types.length-1);
  assert.equal((await request('/api/storage/'+id,'DELETE')).r.status,200);assert.equal((await request('/api/items/'+add.b.id,'DELETE')).r.status,200);assert.equal((await request('/api/storage/'+second,'DELETE')).r.status,200);
  const exportData=(await request('/api/export')).b;assert.equal(exportData.items.length,0);
+ const restore=payload=>fetch(base+'/api/import',{method:'POST',headers:{'Content-Type':'application/json','X-Locatr-Confirm':'replace-records'},body:JSON.stringify(payload)});
+ assert.equal((await restore(state)).status,200);assert.deepEqual((await request('/api/state')).b,state);
+ const broken=structuredClone(state);broken.items[0].storage_id='missing';assert.equal((await restore(broken)).status,400);assert.deepEqual((await request('/api/state')).b,state);
+ const duplicate=structuredClone(state);duplicate.locations.push(duplicate.locations[0]);assert.equal((await restore(duplicate)).status,400);assert.deepEqual((await request('/api/state')).b,state);
+ const invalid=structuredClone(state);invalid.storage[0].photo='/photos/../../private';assert.equal((await restore(invalid)).status,400);
+ assert.equal((await fetch(base+'/api/import',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(initial)})).status,400);
+ await stop();await start();assert.deepEqual((await request('/api/state')).b,state);
  }finally{if(child&&child.exitCode===null)await stop();await rm(dir,{recursive:true,force:true});}
 });
 

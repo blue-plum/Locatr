@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+- Compact horizontal Containers, Locations and Items navigation with inline counts.
+- Move list management, labels and record import/export into a header menu.
+- Add validated JSON record replacement with confirmation and transactional rollback.
+
 ## 1.1.0
 
 - Rebrand the app as Locatr, with the supplied logo and "Where everything belongs" tagline.

@@ -7,6 +7,7 @@ import { mkdirSync } from 'node:fs';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { importInventory } from './inventory-import.js';
 
 const root=path.dirname(fileURLToPath(import.meta.url));
 const data=path.resolve(process.env.DATA_DIR||path.join(root,'data'));
@@ -25,6 +26,10 @@ if(!db.prepare("SELECT value FROM settings WHERE key='lists_initialized'").get()
 const app=express();
 app.disable('x-powered-by');
 app.use((req,res,next)=>{if(!['GET','HEAD','OPTIONS'].includes(req.method)&&req.headers.origin&&new URL(req.headers.origin).host!==req.headers.host)return res.status(403).json({error:'Please submit from this site.'});next();});
+app.post('/api/import',express.json({limit:'16mb'}),(req,res)=>{
+ if(req.headers['x-locatr-confirm']!=='replace-records')return res.status(400).json({error:'Confirm replacement before importing.'});
+ res.json({ok:true,...importInventory(db,req.body)});
+});
 app.use(express.json({limit:'64kb'}));
 app.use('/photos',express.static(path.join(data,'photos'),{dotfiles:'deny'}));
 const upload=multer({storage:multer.memoryStorage(),limits:{fileSize:15*1024*1024,files:1}}).single('photo');

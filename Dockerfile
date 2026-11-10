@@ -3,6 +3,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --omit=dev
 COPY server.js ./
+COPY inventory-import.js ./
 COPY public ./public
 RUN mkdir /app/data && chown node:node /app/data
 USER node

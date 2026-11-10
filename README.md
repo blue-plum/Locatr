@@ -2,7 +2,9 @@
 
 **Where everything belongs.**
 
-Current version: **1.1.0**. See [CHANGELOG.md](CHANGELOG.md) for release history.
+Current version: **1.2.0**. See [CHANGELOG.md](CHANGELOG.md) for release history.
+
+The header menu contains Manage Lists, Labels, Import Database and Export Database. Import/export transfer JSON inventory records, including their IDs and photo references, but do not include photo files. Import requires confirmation and replaces existing records; invalid imports roll back. Use a full data-volume backup to transfer or restore photos as well.
 
 The app was previously called StoTrak. The GitHub repository, Compose service, image name, `STOTRAK_PORT` setting and data volume retain their existing names so Arcane can redeploy in place. Keep the same Arcane project and volume. Existing QR links and data formats are unchanged.
 
@@ -113,7 +115,7 @@ sudo tar -czf storage-backup.tar.gz -C /var/lib storage-tracker
 sudo systemctl start storage-tracker
 ```
 
-Restore the directory with the service stopped and ensure ownership is `storage-tracker:storage-tracker`. For a manual launch the data directory defaults to `./data` beside `server.js`. Docker uses the named volume instead; stop the container and back up that volume. JSON export is useful for reading records but is not a full backup or an import format. Replaced and removed photos remain in the photo folder so no automated cleanup destroys them.
+Restore the directory with the service stopped and ensure ownership is `storage-tracker:storage-tracker`. For a manual launch the data directory defaults to `./data` beside `server.js`. Docker uses the named volume instead; stop the container and back up that volume. JSON export can be imported through the header menu but is not a full backup because it contains no photo files. Replaced and removed photos remain in the photo folder so no automated cleanup destroys them.
 
 ## Development and checks
 
