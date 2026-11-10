@@ -4,6 +4,7 @@ data
 test
 .npm-cache
 releases
+backups
 docs
 scripts
 *.log

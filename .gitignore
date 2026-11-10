@@ -3,6 +3,7 @@ node_modules/
 data/
 *.log
 releases/
+backups/
 .env
 .env.*
 !.env.example

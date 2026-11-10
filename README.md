@@ -2,7 +2,7 @@
 
 **A place for everything.**
 
-Current version: **1.0.1**. See [CHANGELOG.md](CHANGELOG.md) for release history.
+Current version: **1.0.2**. See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## Project layout and version control
 
@@ -70,6 +70,8 @@ sudo systemctl status storage-tracker
 The app files must be readable by the service user. The systemd unit creates and owns `/var/lib/storage-tracker` for persistent data. View logs with `journalctl -u storage-tracker`.
 
 ### Docker alternative
+
+For a headless Raspberry Pi, follow the [GitHub and Docker Compose deployment guide](docs/raspberry-pi-docker.md). Copy `.env.example` to `.env` and set the Pi address before printing labels.
 
 With Docker Engine and the Compose plugin installed:
 

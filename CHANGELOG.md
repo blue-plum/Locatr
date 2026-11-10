@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+
+- Add Raspberry Pi Docker Compose deployment instructions for the private GitHub repository.
+- Configure the host port and QR destination through a local `.env` file.
+- Add a container health check, bounded logs and persistent-volume backup instructions.
+
 ## 1.0.1
 
 - Organise deployment configuration and preview images into dedicated folders.

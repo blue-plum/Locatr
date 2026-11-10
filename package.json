@@ -1,11 +1,11 @@
 {
   "name": "home-storage-tracker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "test": "node --test",
+    "test": "node --test test/app.test.js",
     "build:release": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-release.ps1"
   },
   "engines": {

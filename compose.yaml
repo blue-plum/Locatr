@@ -1,14 +1,26 @@
 services:
   storage-tracker:
     build: .
+    image: stotrak:local
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "${STOTRAK_PORT:-8080}:8080"
     environment:
       PORT: 8080
-      # Set this to the Pi's reserved IP or stable hostname before printing labels.
-      # PUBLIC_URL: http://192.168.1.50:8080
+      PUBLIC_URL: ${PUBLIC_URL:-}
     volumes:
       - storage-data:/app/data
+    init: true
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8080/api/state').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 volumes:
   storage-data:
